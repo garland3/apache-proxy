@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Golang Backend (Gin)</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header { 
+            color: #2c3e50; 
+            border-bottom: 3px solid #e74c3c; 
+            padding-bottom: 15px; 
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .info { 
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+        }
+        .auth-info { 
+            background: linear-gradient(135deg, #feca57, #ff9ff3);
+            color: #2c3e50;
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(254, 202, 87, 0.3);
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        th, td { 
+            padding: 12px 15px; 
+            text-align: left; 
+            border-bottom: 1px solid #ddd; 
+        }
+        th { 
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white; 
+            font-weight: 600;
+        }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e3f2fd; }
+        .emoji { font-size: 2.5em; }
+        .service-badge {
+            background: #27ae60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            color: #6c757d;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">
+            <span class="emoji">⚡</span> 
+            <div>
+                Golang Backend
+                <div class="service-badge">Powered by Gin Framework</div>
+            </div>
+        </h1>
+        
+        <div class="info">
+            <h3>🚀 Service Information</h3>
+            <p><strong>Service:</strong> {{.userInfo.Service}}</p>
+            <p><strong>Language:</strong> {{.userInfo.Language}}</p>
+            <p><strong>Message:</strong> {{.userInfo.Message}}</p>
+            <p><strong>Framework:</strong> Gin (High-performance HTTP web framework)</p>
+        </div>
+        
+        <div class="auth-info">
+            <h3>🔐 Authentication Details</h3>
+            <p><strong>Authenticated User:</strong> {{.userInfo.AuthenticatedUser}}</p>
+            <p><strong>Auth Method:</strong> {{.userInfo.AuthMethod}}</p>
+            <p><strong>Auth Timestamp:</strong> {{.userInfo.AuthTimestamp}}</p>
+        </div>
+        
+        <h3>📋 HTTP Headers</h3>
+        <table>
+            <tr>
+                <th>Header Name</th>
+                <th>Value</th>
+            </tr>
+            {{range $key, $value := .userInfo.AllHeaders}}
+            <tr>
+                <td><strong>{{$key}}</strong></td>
+                <td>{{$value}}</td>
+            </tr>
+            {{end}}
+        </table>
+        
+        <div class="footer">
+            <strong>🌐 Proxied through Apache HTTP Server</strong><br>
+            This Go application uses the Gin framework for clean, efficient HTTP handling.<br>
+            Authentication headers are seamlessly passed from Apache reverse proxy.
+        </div>
+    </div>
+</body>
+</html>

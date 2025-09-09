@@ -1,0 +1,10 @@
+# Debug Dockerfile - runs debug script
+FROM golang:1.21-alpine AS builder
+
+WORKDIR /app
+
+# Copy everything including debug script
+COPY . ./
+
+# Make debug script executable and run it
+RUN chmod +x debug.sh && ./debug.sh

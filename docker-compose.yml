@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  apache-proxy:
+    build: ./apache
+    ports:
+      - "80:80"
+    networks:
+      - proxy-network
+    depends_on:
+      - fastapi-app
+      - golang-app
+
+  fastapi-app:
+    build: ./fastapi-app
+    networks:
+      - proxy-network
+    restart: unless-stopped
+
+  golang-app:
+    build: ./golang-app
+    networks:
+      - proxy-network
+    restart: unless-stopped
+
+networks:
+  proxy-network:
+    driver: bridge

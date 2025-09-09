@@ -21,8 +21,9 @@ All services run via Docker Compose.
 docker-compose up -d
 
 # Test through Apache proxy (requires auth: demo/demopass)
-curl -u demo:demopass http://localhost/api/
-curl -u demo:demopass http://localhost/go/
+curl -u demo:demopass http://localhost/api/  # 🐍 FastAPI Python backend
+curl -u demo:demopass http://localhost/go/   # ⚡ Golang backend
+curl -u demo:demopass http://localhost/      # Defaults to FastAPI
 ```
 
 ## Authentication
